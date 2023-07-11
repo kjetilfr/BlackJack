@@ -3,6 +3,10 @@ import random
 
 DAS = True
 # DrawToSix = False
+# StandOnSoft17 = False
+# ResplitAces = False
+# LateSurrender = False
+# SplitTwiceOnly = False
 
 
 
