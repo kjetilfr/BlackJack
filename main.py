@@ -1,6 +1,11 @@
 import random
 
 
+DAS = True
+# DrawToSix = False
+
+
+
 def getHardTotal(playerHand):
     hardTotal = 0
     for card in playerHand:
@@ -466,7 +471,19 @@ def splitPairHand(playerHand, dealerCard):
     else:
         return "Unknown dealer card!"
 
-DAS = True
+
+def surrender(playerHand, dealerCard):
+    if (dealerCard == 9 or dealerCard == 10 or dealerCard == 11) and getHardTotal(playerHand) == 16:
+        return True
+    elif dealerCard == 10 and getHardTotal(playerHand) == 15:
+        return True
+    else:
+        return False
+        
+print(surrender([10,5], 9))
+        
+
+
 # print(handIsSoft([11, 9]))
 
 hand = [random.randint(2,11), random.randint(2,11)]
@@ -490,7 +507,7 @@ integer = random.randint(2,11)
 hand = [integer, integer]
 dealerCard = random.randint(2,11)
 
-print("Pair:")
+print("Pair (split?):")
 
 print(str(integer) + " " + str(dealerCard))
 print(splitPairHand(hand, dealerCard))
