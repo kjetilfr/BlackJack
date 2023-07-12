@@ -16,10 +16,10 @@ def readCount():
 
 
 def writeRunningCount(runningCount):
-    with open("./Settings/settings.json", "r+") as f:
+    with open("./rules.json", "r+") as f:
         data = json.load(f)
         # data  = profileName
-        data["count"][0]["runningCount"] = runningCount
+        data["count"][0]["runningCount"] += runningCount
 
         f.seek(0)
         json.dump(data, f, indent=4)
@@ -28,7 +28,7 @@ def writeRunningCount(runningCount):
 
 
 def writeTrueCount(trueCount):
-    with open("./Settings/settings.json", "r+") as f:
+    with open("./rules.json", "r+") as f:
         data = json.load(f)
         # data  = profileName
         data["count"][0]["trueCount"] = trueCount
@@ -40,7 +40,7 @@ def writeTrueCount(trueCount):
 
 
 def writeCurrentDeckSize(deckSize):
-    with open("./Settings/settings.json", "r+") as f:
+    with open("./rules.json", "r+") as f:
         data = json.load(f)
         # data  = profileName
         data["count"][0]["currentDeckSize"] = deckSize
