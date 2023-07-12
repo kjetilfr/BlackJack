@@ -1,11 +1,11 @@
-from pairHand import *
-from hardHand import *
-from softHand import *
-from count import trueCount, count, getTrueCount
-from saveLoad import *
+from pairHand import handIsPair, splitPairHand
+from hardHand import hardHand, getHardTotal
+from softHand import handIsSoft, softHand, getSoftTotal
+from count import count, getTrueCount
 from deviation import deviation, insurance
 
-global DAS, Resplit
+global DAS, Resplit, DrawToSix, StandOnSoft17, ResplitAces, LateSurrender, AceSplitOnlyDraw1
+
 DAS = True
 Resplit = True
 # DrawToSix = False
@@ -28,7 +28,7 @@ def surrender(playerHand, dealerCard):
 def drawCard():
     # Draw new card
     newCard = int(input("New Card: "))
-    #count(newCard)
+    count(newCard)
     return newCard
 
 
@@ -43,9 +43,9 @@ def Start():
     #dealerCard = 2
     playerHand = [Card1, Card2]
     
-    #for card in playerHand:
-    #    count(card)
-    #count(dealerCard)
+    for card in playerHand:
+        count(card)
+    count(dealerCard)
     
     # Insurance?
     if dealerCard == 11:
@@ -96,7 +96,7 @@ def newCard(playerHand, dealerCard):
         elif hand == "Double!" and canDouble == True:
             print("Double")
             playerHand.append(drawCard())
-            print(str(playerHand) + " vs " + str(dealerCard))
+            print(finishedPrint(playerHand) + " vs " + str(dealerCard))
         elif hand == "Double!" and canDouble == False:
             print("Hit")
             playerHand.append(drawCard())
@@ -104,21 +104,21 @@ def newCard(playerHand, dealerCard):
         elif hand == "Double! or Stand!" and canDouble == True:
             print("Double")
             playerHand.append(drawCard())
-            print(str(playerHand) + " vs " + str(dealerCard))
+            print(finishedPrint(playerHand) + " vs " + str(dealerCard))
         elif hand == "Double! or Stand!" and canDouble == False:
             print("Stand")
-            print(str(playerHand) + " vs " + str(dealerCard))
+            print(finishedPrint(playerHand) + " vs " + str(dealerCard))
         elif hand == "Double! or Hit!" and canDouble == True:
             print("Double")
             playerHand.append(drawCard())
-            print(str(playerHand) + " vs " + str(dealerCard))
+            print(finishedPrint(playerHand) + " vs " + str(dealerCard))
         elif hand == "Double! or Hit!" and canDouble == False:
             print("Hit")
             playerHand.append(drawCard())
-            print(str(playerHand) + " vs " + str(dealerCard))
+            print(finishedPrint(playerHand) + " vs " + str(dealerCard))
         elif hand == "Stand!":
             print("Stand")
-            print(str(playerHand) + " vs " + str(dealerCard))
+            print(finishedPrint(playerHand) + " vs " + str(dealerCard))
         else:
             print("UNKNOWN STUFF 1")
     # If hand is still soft
@@ -134,7 +134,7 @@ def newCard(playerHand, dealerCard):
         elif hand == "Double!" and canDouble == True:
             print("Double")
             playerHand.append(drawCard())
-            print(str(playerHand) + " vs " + str(dealerCard))
+            print(finishedPrint(playerHand) + " vs " + str(dealerCard))
         elif hand == "Double!" and canDouble == False:
             print("Hit")
             playerHand.append(drawCard())
@@ -142,13 +142,13 @@ def newCard(playerHand, dealerCard):
         elif hand == "Double! or Stand!" and canDouble == True:
             print("Double")
             playerHand.append(drawCard())
-            print(str(playerHand) + " vs " + str(dealerCard))
+            print(finishedPrint(playerHand) + " vs " + str(dealerCard))
         elif hand == "Double! or Stand!" and canDouble == False:
             print("Stand")
-            print(str(playerHand) + " vs " + str(dealerCard))
+            print(finishedPrint(playerHand) + " vs " + str(dealerCard))
         elif hand == "Stand!":
             print("Stand")
-            print(str(playerHand) + " vs " + str(dealerCard))
+            print(finishedPrint(playerHand) + " vs " + str(dealerCard))
         else:
             print("UNKNOWN STUFF 1")
     elif handIsPair(playerHand):
@@ -174,16 +174,22 @@ def newCard(playerHand, dealerCard):
         elif hand == "Double!" and canDouble == True:
             print("Double")
             playerHand.append(drawCard())
-            print(str(playerHand) + " vs " + str(dealerCard))
+            print(finishedPrint(playerHand) + " vs " + str(dealerCard))
         elif hand == "Double!" and canDouble == False:
             print("Hit")
             playerHand.append(drawCard())
             newCard(playerHand, dealerCard)
         elif hand == "Stand!":
             print("Stand")
-            print(str(playerHand) + " vs " + str(dealerCard))
+            print(finishedPrint(playerHand) + " vs " + str(dealerCard))
         else:
             print("UNKNOWN STUFF 2")
 
+
+def finishedPrint(playerHand):
+    if handIsSoft(playerHand):
+        return "Soft " + str(getSoftTotal(playerHand))
+    else:
+        return "Hard " + str(getHardTotal(playerHand))
 
 Start()

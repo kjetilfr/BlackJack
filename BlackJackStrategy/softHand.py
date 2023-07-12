@@ -52,7 +52,7 @@ def softHand(playerHand, dealerCard):
         if getSoftTotal(playerHand) <= 14:
             return "Hit!"
         # Player card is Ace + 4 to Ace + 6
-        elif 15 <= getSoftTotal(playerHand) == 17:
+        elif 15 <= getSoftTotal(playerHand) <= 17:
             return "Double!"
         # Player card is Ace + 7
         elif getSoftTotal(playerHand) == 18:

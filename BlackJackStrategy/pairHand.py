@@ -127,7 +127,7 @@ def splitPairHand(playerHand, dealerCard, DAS = True):
         elif 7 <= playerHand[0] <= 8:
             return True
         #Player card is 9 + 9 or 10 + 10
-        elif 9 <= playerHand[0] == 10:
+        elif 9 <= playerHand[0] <= 10:
             return False
         #Player card is Ace + Ace
         elif playerHand[0] == 11:

@@ -9,14 +9,14 @@
             "LateSurrender": 0,
             "AceSplitOnlyDraw1": 0,
             "surrender": 1
-}
+        }
     ],
     "count": [
         {
             "runningCount": 0,
-            "trueCount": 0,
-            "totalDecks": 0,
-            "currentDeckSize": 0
+            "trueCount": 1.395973154362416,
+            "totalDecks": 6,
+            "currentDeckSize": 5.730769230769231
         }
     ]
 }

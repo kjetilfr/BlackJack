@@ -5,7 +5,6 @@ runningCount = data[0]["runningCount"]
 decks = data[0]["totalDecks"]
 deckSize = data[0]["currentDeckSize"]
 
-print(runningCount)
 
 def count(card):
     global runningCount
@@ -19,7 +18,7 @@ def count(card):
     setTrueCount()
 
 
-def trueCount():
+def setTrueCount():
     global runningCount, deckSize
     writeTrueCount(runningCount / deckSize)
     
@@ -34,3 +33,4 @@ def deckSizeMinus1():
     deckSize = deckSize * 52
     deckSize -= 1
     deckSize = deckSize / 52
+    writeCurrentDeckSize(deckSize)

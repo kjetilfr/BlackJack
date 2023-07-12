@@ -18,7 +18,7 @@ def hardHand(playerHand, dealerCard):
         elif 10 <= getHardTotal(playerHand) <= 11:
             return "Double!"
         # Player card is 12
-        elif 10 <= getHardTotal(playerHand) == 12:
+        elif 10 <= getHardTotal(playerHand) <= 12:
             return "Hit!"
         # Player card is 13 or above
         elif 12 <= getHardTotal(playerHand) >= 13:
@@ -34,7 +34,7 @@ def hardHand(playerHand, dealerCard):
         elif 9 <= getHardTotal(playerHand) <= 11:
             return "Double!"
         # Player card is 12
-        elif 10 <= getHardTotal(playerHand) == 12:
+        elif 10 <= getHardTotal(playerHand) <= 12:
             return "Hit!"
         # Player card is 13 or above
         elif 12 <= getHardTotal(playerHand) >= 13:
