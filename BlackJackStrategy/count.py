@@ -16,12 +16,17 @@ def count(card):
         runningCount -= 1
     else:
         runningCount += 0
-    trueCount()
+    setTrueCount()
 
 
 def trueCount():
     global runningCount, deckSize
     writeTrueCount(runningCount / deckSize)
+    
+
+def getTrueCount():
+    data = readCount()
+    return data[0]["trueCount"]
 
 
 def deckSizeMinus1():
