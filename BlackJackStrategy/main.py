@@ -1,6 +1,7 @@
-from pairHand import splitPairHand
-from hardHand import hardHand, getHardTotal
-from softHand import softHand, getSoftTotal
+from pairHand import *
+from hardHand import *
+from softHand import *
+from count import trueCount
 
 global DAS, Resplit
 DAS = True
@@ -10,29 +11,6 @@ Resplit = True
 # ResplitAces = False
 # LateSurrender = False
 # SplitTwiceOnly = False
-
-
-def handIsSoft(playerHand):
-    if 11 in playerHand and getSoftTotal(playerHand) <= 21:
-        return True
-    else:
-        return False
-
-
-def handIsPair(playerHand):
-    if playerHand[0] == playerHand[1]:
-        return True
-    else:
-        return False
-
-
-
-    
-    
-
-
-
-
 
 
 def surrender(playerHand, dealerCard):
@@ -51,6 +29,9 @@ def drawCard():
 
 
 def Start():
+    from deviation import deviation, insurance
+
+
     global canDouble
     canDouble = True
     Card1 = int(input("Card 1: "))
@@ -62,6 +43,11 @@ def Start():
         print("Blackjack!")
     elif surrender(playerHand, dealerCard):
         print("Surrender")
+    elif dealerCard == 11 and insurance(trueCount()):
+        print("Take Insurance")
+    elif 1 == 1:
+        print("Hey")
+        print(deviation(playerHand, dealerCard)[0])
     elif handIsPair(playerHand):
         if splitPairHand(playerHand, dealerCard, DAS):
             print("Splitting Hand")

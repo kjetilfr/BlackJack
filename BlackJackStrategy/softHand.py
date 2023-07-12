@@ -1,3 +1,10 @@
+def handIsSoft(playerHand):
+    if 11 in playerHand and getSoftTotal(playerHand) <= 21:
+        return True
+    else:
+        return False
+
+
 def getSoftTotal(playerHand):
     softTotal = 0
     amountOfAces = 0

@@ -1,0 +1,22 @@
+{
+    "settings": [
+        {
+            "DAS": 1,
+            "Resplit": 1,
+            "DrawToSix": 0,
+            "StandOnSoft17": 0,
+            "ResplitAces": 0,
+            "LateSurrender": 0,
+            "AceSplitOnlyDraw1": 0,
+            "surrender": 1
+}
+    ],
+    "count": [
+        {
+            "runningCount": 0,
+            "trueCount": 0,
+            "totalDecks": 0,
+            "currentDeckSize": 0
+        }
+    ]
+}

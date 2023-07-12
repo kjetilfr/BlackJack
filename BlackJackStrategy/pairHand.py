@@ -1,3 +1,10 @@
+def handIsPair(playerHand):
+    if playerHand[0] == playerHand[1]:
+        return True
+    else:
+        return False
+
+
 def splitPairHand(playerHand, dealerCard, DAS = True):
     #Dealer showing a 2
     if dealerCard == 2:
