@@ -1,7 +1,7 @@
 from pairHand import *
 from hardHand import *
 from softHand import *
-from count import trueCount, count
+from count import trueCount, count, getTrueCount
 from saveLoad import *
 from deviation import deviation, insurance
 
@@ -47,12 +47,17 @@ def Start():
     #    count(card)
     #count(dealerCard)
     
+    # Insurance?
+    if dealerCard == 11:
+        if insurance(getTrueCount()):
+            print("Take Insurance")
+        else:
+            print("Don't take Insurance")
+    
     if playerHand[0] + playerHand[1] == 21:
         print("Blackjack!")
     elif surrender(playerHand, dealerCard):
         print("Surrender")
-    elif dealerCard == 11 and insurance(trueCount()):
-        print("Take Insurance")
     elif deviation(playerHand, dealerCard)[0]:
         newCard(playerHand, dealerCard)
     elif handIsPair(playerHand):
@@ -77,6 +82,9 @@ def Start():
 def newCard(playerHand, dealerCard):
     global canDouble
     if deviation(playerHand, dealerCard)[0]:
+        #If deviation
+        print("DEVIATION")
+        print("Hand: " + str(playerHand[0]) + " " + str(playerHand[1]) + " True Count: " + str(getTrueCount()))
         # Shorten to variable
         hand = deviation(playerHand, dealerCard)[1]
         #if hitting and getting a new card
