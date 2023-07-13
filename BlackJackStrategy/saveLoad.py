@@ -49,3 +49,15 @@ def writeCurrentDeckSize(deckSize):
         json.dump(data, f, indent=4)
         f.truncate()
         f.close()
+
+
+def setRunningCount(count):
+    with open("./rules.json", "r+") as f:
+        data = json.load(f)
+        # data  = profileName
+        data["count"][0]["runningCount"] = count
+
+        f.seek(0)
+        json.dump(data, f, indent=4)
+        f.truncate()
+        f.close()

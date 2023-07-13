@@ -20,7 +20,7 @@ def getSoftTotal(playerHand):
     return softTotal
 
 
-def softHand(playerHand, dealerCard):
+def softHand(playerHand, dealerCard, S17=False):
     # Dealer showing a 2
     if dealerCard == 2:
         # Player card is Ace + 2 to Ace + 6
@@ -81,8 +81,11 @@ def softHand(playerHand, dealerCard):
             return "Double! or Stand!"
         # Player card is Ace + 8
         elif getSoftTotal(playerHand) == 19:
-            return "Double! or Stand!"
-        # Player card is Ace + 8
+            if S17:
+                return "Stand!"
+            else:
+                return "Double! or Stand!"
+        # Player card is Ace + 9
         elif getSoftTotal(playerHand) >= 20:
             return "Stand!"
     # Dealer showing a 7

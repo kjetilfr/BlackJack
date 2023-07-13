@@ -15,6 +15,7 @@ def count(card):
         runningCount -= 1
     else:
         runningCount += 0
+    setRunningCount(runningCount)
     setTrueCount()
 
 

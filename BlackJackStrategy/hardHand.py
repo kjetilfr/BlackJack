@@ -8,7 +8,7 @@ def getHardTotal(playerHand):
     return hardTotal
 
 
-def hardHand(playerHand, dealerCard):
+def hardHand(playerHand, dealerCard, S17=False):
     # Dealer showing a 2
     if dealerCard == 2:
         # Player card is 9 or below
@@ -135,7 +135,10 @@ def hardHand(playerHand, dealerCard):
             return "Hit!"
         # Player card is 9, 10 or 11
         elif getHardTotal(playerHand) == 11:
-            return "Double!"
+            if S17:
+                return "Hit!"
+            else:
+                return "Double!"
         # Player card is 12 to 16
         elif 12 <= getHardTotal(playerHand) <= 16:
             return "Hit!"
