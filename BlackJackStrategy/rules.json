@@ -14,10 +14,10 @@
     ],
     "count": [
         {
-            "runningCount": 209,
-            "trueCount": 61.40112994350276,
+            "runningCount": 268,
+            "trueCount": -258.0740740740757,
             "totalDecks": 6,
-            "currentDeckSize": 3.4038461538461573
+            "currentDeckSize": -1.0384615384615319
         }
     ]
 }

@@ -5,13 +5,14 @@ from count import count, getTrueCount
 from deviation import deviation, insurance
 from surrender import surrender
 
-global DAS, Resplit, DrawToSix, StandOnSoft17, ResplitAces, LateSurrender, AceSplitOnlyDraw1
-
+global DAS, Resplit, DrawToSix, StandOnSoft17, ResplitAces, LateSurrender, AceSplitOnlyDraw1, amountOfSplitsAllowed
 DAS = True
 Resplit = True
 S17 = False
 canSurrender = True
 typeSurrender = "Late Surrender"
+amountOfSplitsAllowed = 2
+#amountOfSplitsAllowed = amountOfSplitsAllowed + amountOfSplitsAllowed - 1
 
 # DrawToSix = False
 # ResplitAces = False
@@ -25,13 +26,13 @@ def drawCard():
     return newCard
 
 
-def Start():
-    global canDouble
+def Start(playerHand, dealerCard):
+    global canDouble , amountOfSplitsAllowed
     canDouble = True
-    Card1 = int(input("Card 1: "))
-    Card2 = int(input("Card 2: "))
-    dealerCard = int(input("Dealer upcard: "))
-    playerHand = [Card1, Card2]
+    #Card1 = int(input("Card 1: "))
+    #Card2 = int(input("Card 2: "))
+    #dealerCard = int(input("Dealer upcard: "))
+    playerHand = [playerHand[0], playerHand[1]]
 
     for card in playerHand:
         count(card)
@@ -53,15 +54,32 @@ def Start():
         newCard(playerHand, dealerCard)
     elif handIsPair(playerHand):
         if splitPairHand(playerHand, dealerCard, DAS):
-            print("Splitting Hand")
-            playerHand1 = [playerHand[0]]
-            print("Hand 1: ")
-            playerHand1.append(drawCard())
-            newCard(playerHand1, dealerCard)
-            playerHand2 = [playerHand[1]]
-            print("Hand 2: ")
-            playerHand2.append(drawCard())
-            newCard(playerHand2, dealerCard)
+            if DAS:
+                splitPairHand(playerHand, dealerCard, DAS)
+                print("Splitting Hand")
+                playerHand1 = [playerHand[0]]
+                print("Hand 1: ")
+                canDouble = True
+                playerHand1.append(drawCard())
+                newCard(playerHand1, dealerCard)
+                playerHand2 = [playerHand[1]]
+                print("Hand 2: ")
+                canDouble = True
+                playerHand2.append(drawCard())
+                newCard(playerHand2, dealerCard)
+            else:
+                splitPairHand(playerHand, dealerCard, DAS)
+                print("Splitting Hand")
+                playerHand1 = [playerHand[0]]
+                print("Hand 1: ")
+                canDouble = False
+                playerHand1.append(drawCard())
+                newCard(playerHand1, dealerCard)
+                playerHand2 = [playerHand[1]]
+                print("Hand 2: ")
+                canDouble = False
+                playerHand2.append(drawCard())
+                newCard(playerHand2, dealerCard)
         else:
             print("Not Splitting Hand")
             newCard(playerHand, dealerCard)
@@ -72,7 +90,8 @@ def Start():
 
 
 def newCard(playerHand, dealerCard):
-    global canDouble
+    global canDouble, amountOfSplitsAllowed
+    print(canDouble)
     if deviation(playerHand, dealerCard, S17)[0]:
         #If deviation
         print("DEVIATION")
@@ -112,16 +131,32 @@ def newCard(playerHand, dealerCard):
             print("Stand")
             print(finishedPrint(playerHand) + " vs " + str(dealerCard))
         elif hand == "Split!":
-            splitPairHand(playerHand, dealerCard, DAS)
-            print("Splitting Hand")
-            playerHand1 = [playerHand[0]]
-            print("Hand 1: ")
-            playerHand1.append(drawCard())
-            newCard(playerHand1, dealerCard)
-            playerHand2 = [playerHand[1]]
-            print("Hand 2: ")
-            playerHand2.append(drawCard())
-            newCard(playerHand2, dealerCard)
+            if DAS:
+                splitPairHand(playerHand, dealerCard, DAS)
+                print("Splitting Hand")
+                playerHand1 = [playerHand[0]]
+                print("Hand 1: ")
+                canDouble = True
+                playerHand1.append(drawCard())
+                newCard(playerHand1, dealerCard)
+                playerHand2 = [playerHand[1]]
+                print("Hand 2: ")
+                canDouble = True
+                playerHand2.append(drawCard())
+                newCard(playerHand2, dealerCard)
+            else:
+                splitPairHand(playerHand, dealerCard, DAS)
+                print("Splitting Hand")
+                playerHand1 = [playerHand[0]]
+                print("Hand 1: ")
+                canDouble = False
+                playerHand1.append(drawCard())
+                newCard(playerHand1, dealerCard)
+                playerHand2 = [playerHand[1]]
+                print("Hand 2: ")
+                canDouble = False
+                playerHand2.append(drawCard())
+                newCard(playerHand2, dealerCard)
         else:
             print("UNKNOWN STUFF 0")
     # If hand is still soft
@@ -157,16 +192,32 @@ def newCard(playerHand, dealerCard):
             print(playerHand)
             print(getSoftTotal(playerHand))
     elif handIsPair(playerHand) and splitPairHand(playerHand, dealerCard, DAS):
-        splitPairHand(playerHand, dealerCard, DAS)
-        print("Splitting Hand")
-        playerHand1 = [playerHand[0]]
-        print("Hand 1: ")
-        playerHand1.append(drawCard())
-        newCard(playerHand1, dealerCard)
-        playerHand2 = [playerHand[1]]
-        print("Hand 2: ")
-        playerHand2.append(drawCard())
-        newCard(playerHand2, dealerCard)
+        if DAS:
+            splitPairHand(playerHand, dealerCard, DAS)
+            print("Splitting Hand")
+            playerHand1 = [playerHand[0]]
+            print("Hand 1: ")
+            canDouble = True
+            playerHand1.append(drawCard())
+            newCard(playerHand1, dealerCard)
+            playerHand2 = [playerHand[1]]
+            print("Hand 2: ")
+            canDouble = True
+            playerHand2.append(drawCard())
+            newCard(playerHand2, dealerCard)
+        else:
+            splitPairHand(playerHand, dealerCard, DAS)
+            print("Splitting Hand")
+            playerHand1 = [playerHand[0]]
+            print("Hand 1: ")
+            canDouble = False
+            playerHand1.append(drawCard())
+            newCard(playerHand1, dealerCard)
+            playerHand2 = [playerHand[1]]
+            print("Hand 2: ")
+            canDouble = False
+            playerHand2.append(drawCard())
+            newCard(playerHand2, dealerCard)
     else:
         # Shorten to variable
         hand = hardHand(playerHand, dealerCard)
@@ -193,8 +244,8 @@ def newCard(playerHand, dealerCard):
 
 def finishedPrint(playerHand):
     if handIsSoft(playerHand):
-        return "Soft " + str(getSoftTotal(playerHand))
+        return "Soft " + str(playerHand) + " " + str(getSoftTotal(playerHand))
     else:
-        return "Hard " + str(getHardTotal(playerHand))
+        return "Hard " + str(playerHand) + " " + str(getHardTotal(playerHand))
 
-Start()
+#Start()
